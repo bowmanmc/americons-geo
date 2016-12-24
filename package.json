@@ -1,0 +1,49 @@
+{
+  "name": "americons-geo",
+  "version": "1.0.0",
+  "description": "Generates SVG geo files for use in the Americons icon font",
+  "scripts": {
+    "start": "npm-run-all unzip json svg optimize",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preunzip": "rimraf shp",
+    "unzip": "node tools/unzipTiger.js",
+    "prejson": "rimraf json",
+    "json": "node tools/convertToJson.js",
+    "presvg": "rimraf svgraw",
+    "svg": "node tools/convertToSvg.js",
+    "preoptimize": "rimraf svg",
+    "optimize": "node tools/optimizeSvg.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bowmanmc/americons-geo.git"
+  },
+  "author": "Michael Bowman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bowmanmc/americons-geo/issues"
+  },
+  "homepage": "https://github.com/bowmanmc/americons-geo#readme",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "d3": "^4.4.0",
+    "d3-geo": "^1.4.0",
+    "d3-geo-projection": "^1.2.1",
+    "d3-selection": "^1.0.3",
+    "d3-selection-multi": "^1.0.0",
+    "d3-shape": "^1.0.4",
+    "filesize": "^3.3.0",
+    "glob": "^7.1.1",
+    "jsdom": "^9.8.3",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.17.1",
+    "npm-run-all": "^3.1.2",
+    "rimraf": "^2.5.4",
+    "shapefile": "^0.5.9",
+    "svgo": "^0.7.1",
+    "sync-exec": "^0.6.2",
+    "unzip": "^0.1.11"
+  },
+  "devDependencies": {
+  }
+}
