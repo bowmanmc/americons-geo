@@ -8,7 +8,8 @@
     "preunzip": "rimraf shp",
     "unzip": "node tools/unzipTiger.js",
     "prejson": "rimraf json",
-    "json": "node tools/convertToJson.js",
+    "json": "node tools/convertToGeoJson.js",
+    "topojson": "node tools/convertToTopoJson.js",
     "presvg": "rimraf svgraw",
     "svg": "node tools/convertToSvg.js",
     "preoptimize": "rimraf svg",
@@ -42,6 +43,8 @@
     "shapefile": "^0.5.9",
     "svgo": "^0.7.1",
     "sync-exec": "^0.6.2",
+    "topojson": "^2.2.0",
+    "topojson-simplify": "^2.0.0",
     "unzip2": "^0.2.5"
   },
   "devDependencies": {}
