@@ -1,13 +1,15 @@
+
+// Tiger shape files downloaded from: http://www2.census.gov/geo/tiger/GENZ2015/shp/
+// low resolution: 20m
+// med resolution: 5m
+//  hi resolution: 500k
+
 module.exports = {
-    baseUrl: 'http://www2.census.gov/geo/tiger/GENZ2015/shp/',
     files: [{
-        filename: 'cb_2015_us_state_20m',
-        resolution: 'low'
+        name: 'states',
+        filename: 'cb_2015_us_state_500k'
     }, {
-        filename: 'cb_2015_us_state_5m',
-        resolution: 'med'
-    }, {
-        filename: 'cb_2015_us_state_500k',
-        resolution: 'high'
+        name: 'nation',
+        filename: 'cb_2015_us_nation_500k'
     }]
 };

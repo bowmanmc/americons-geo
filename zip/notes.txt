@@ -3,4 +3,5 @@ zip/cb_2015*.zip files downloaded in December of 2016 from:
     http://www2.census.gov/geo/tiger/GENZ2015/shp/
 except for cb_2015_us_nation_500k.zip.
 They don't produce that one, so I opened the cb_2015_us_region_500k.zip file
-in qGIS and combined the regions (Vector -> Geoprocessing Tools -> Dissolve).
+in qGIS and combined the regions (Vector -> Geoprocessing Tools -> Dissolve
+(on LSAD field)).

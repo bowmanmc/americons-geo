@@ -42,8 +42,7 @@
     "shapefile": "^0.5.9",
     "svgo": "^0.7.1",
     "sync-exec": "^0.6.2",
-    "unzip": "^0.1.11"
+    "unzip2": "^0.2.5"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
