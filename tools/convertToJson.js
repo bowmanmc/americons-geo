@@ -7,12 +7,15 @@ const IN_DIR = 'shp';
 const OUT_DIR = 'json';
 
 
+// The guts for this were taken from the shp2json command line
+// tool from Mike Bostock:
+//     https://github.com/mbostock/shapefile/blob/master/bin/shp2json
+//
 TIGER.files.forEach(tigerFile => {
 
-    let shpFile = `${IN_DIR}/${tigerFile.resolution}/${tigerFile.filename}.shp`;
-    let outPath = `${OUT_DIR}/${tigerFile.resolution}`;
-    let outFile = `${outPath}/${tigerFile.filename}.json`;
-    mkdirp.sync(outPath);
+    let shpFile = `${IN_DIR}/${tigerFile.filename}.shp`;
+    let outFile = `${OUT_DIR}/${tigerFile.filename}.json`;
+    mkdirp.sync(OUT_DIR);
 
     let out = fs.createWriteStream(outFile);
 
