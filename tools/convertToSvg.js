@@ -91,38 +91,40 @@ function renderData(data, id, projection, outFile) {
         return deferred.promise;
 }
 
-TIGER.files.forEach(tigerFile => {
-    let filePath = `${IN_DIR}/${tigerFile.resolution}/${tigerFile.filename}.json`;
-    console.log(`Processing JSON file: ${filePath}...`);
+mkdirp.sync(OUT_DIR);
 
-    let usa = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    let features = usa.features;
-
-    let outPath = `${OUT_DIR}/${tigerFile.resolution}`;
-    mkdirp.sync(outPath);
-
-    Promise.each(STATES, function(state) {
-        let feature = getFeature(features, state.id);
-        let outFile = `${outPath}/${state.id.toLowerCase()}.svg`;
-        let stateProjection = d3.geo.geoConicConformal();
-        return renderData(feature, state.id, stateProjection, outFile);
-    });
-
-    // usa shape with ak and hi included
-    let usaOut = `${outPath}/usa.svg`;
-    let usaProjection = d3.geo.geoAlbersUsa();
-    renderData(usa, 'usa', usaProjection, usaOut);
-
-    // usa shape contiguous only
-    let usacOut = `${outPath}/contiguous.svg`;
-    let usacProjection = d3.geo.geoConicConformal();
-    let contiguous = getContiguousIds();
-    let usac = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    let featuresc = usa.features.filter(function(feature) {
-        if (contiguous.indexOf(feature.properties.STUSPS) >= 0) {
-            return feature;
-        }
-    });
-    usac.features = featuresc;
-    renderData(usac, 'contiguous', usacProjection, usacOut);
+TIGER.files.forEach(file => {
+    let path = `${IN_DIR}/${file.filename}.json`;
+    console.log(`Processing ${path}...`);
+    let data = JSON.parse(fs.readFileSync(path, 'utf8'));
+    if (file.name === 'states') {
+        // render each state
+        let features = data.features;
+        Promise.each(STATES, function(state) {
+            let feature = getFeature(features, state.id);
+            let outFile = `${OUT_DIR}/${state.id.toLowerCase()}.svg`;
+            let stateProjection = d3.geo.geoConicConformal();
+            return renderData(feature, state.id, stateProjection, outFile);
+        });
+    }
+    else {
+        // render nation
+        // usa shape with ak and hi included
+        let usaOut = `${OUT_DIR}/usa.svg`;
+        let usaProjection = d3.geo.geoAlbersUsa();
+        renderData(data, 'usa', usaProjection, usaOut);
+    }
 });
+
+// // usa shape contiguous only
+// let usacOut = `${outPath}/contiguous.svg`;
+// let usacProjection = d3.geo.geoConicConformal();
+// let contiguous = getContiguousIds();
+// let usac = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+// let featuresc = usa.features.filter(function(feature) {
+//     if (contiguous.indexOf(feature.properties.STUSPS) >= 0) {
+//         return feature;
+//     }
+// });
+// usac.features = featuresc;
+// renderData(usac, 'contiguous', usacProjection, usacOut);

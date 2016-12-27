@@ -10,6 +10,6 @@ module.exports = {
         filename: 'cb_2015_us_state_500k'
     }, {
         name: 'nation',
-        filename: 'cb_2015_us_nation_500k'
+        filename: 'cb_2015_us_nation_5m'
     }]
 };
