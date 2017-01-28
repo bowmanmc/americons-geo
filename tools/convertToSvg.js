@@ -97,12 +97,13 @@ TIGER.files.forEach(file => {
     let path = `${IN_DIR}/${file.filename}.json`;
     console.log(`Processing ${path}...`);
     let data = JSON.parse(fs.readFileSync(path, 'utf8'));
-    if (file.name === 'states') {
+    if (file.name.indexOf('states') == 0) { // starts with 'states'
+        let resolution = file.name.substring(7);
         // render each state
         let features = data.features;
         Promise.each(STATES, function(state) {
             let feature = getFeature(features, state.id);
-            let outFile = `${OUT_DIR}/${state.id.toLowerCase()}.svg`;
+            let outFile = `${OUT_DIR}/${state.id.toLowerCase()}-${resolution}.svg`;
             let stateProjection = d3.geo.geoConicConformal();
             return renderData(feature, state.id, stateProjection, outFile);
         });
