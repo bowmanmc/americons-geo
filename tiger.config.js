@@ -6,8 +6,14 @@
 
 module.exports = {
     files: [{
-        name: 'states',
+        name: 'states-hi',
         filename: 'cb_2015_us_state_500k'
+    }, {
+        name: 'states-med',
+        filename: 'cb_2015_us_state_5m'
+    }, {
+        name: 'states-low',
+        filename: 'cb_2015_us_state_20m'
     }, {
         name: 'nation',
         filename: 'cb_2015_us_nation_5m'
